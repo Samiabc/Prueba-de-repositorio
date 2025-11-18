@@ -1,0 +1,22 @@
+const JsonWriter = require("./JsonWriter");
+const JsonReader = require("./JsonReader");
+
+function main() {
+    // Datos de ejemplo
+    const datos = {
+        nombre: "Sami",
+        edad: 20,
+        hobbies: ["baile", "canto", "escribir"]
+    };
+
+    // Guardar JSON
+    JsonWriter.save("datos.json", datos);
+    console.log("Archivo JSON guardado correctamente.");
+
+    // Leer JSON
+    const contenido = JsonReader.read("datos.json");
+    console.log("Contenido del JSON:");
+    console.log(contenido);
+}
+
+main();
