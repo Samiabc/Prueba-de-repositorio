@@ -1,0 +1,22 @@
+from JsonWriter import JsonWriter
+from JsonReader import JsonReader
+
+def main():
+    # Datos de ejemplo
+    datos = {
+        "nombre": "Sami",
+        "edad": 20,
+        "hobbies": ["baile", "canto", "escribir"]
+    }
+
+    # Guardar archivo JSON
+    JsonWriter.save("datos.json", datos)
+    print("Archivo JSON guardado correctamente.")
+
+    # Leer archivo JSON
+    contenido = JsonReader.read("datos.json")
+    print("Contenido del JSON:")
+    print(contenido)
+
+if __name__ == "__main__":
+    main()
