@@ -1,0 +1,77 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+import java.io.File;
+
+public class Main {
+
+    private static final String FILE = "soundmixers.json";
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        List<SoundMixer> mixers = loadOrCreate();
+
+        while (true) {
+            System.out.println("\n=== SOUND MIXER MENU ===");
+            System.out.println("1. Add SoundMixer");
+            System.out.println("2. Read JSON");
+            System.out.println("3. Exit");
+            System.out.print("Option: ");
+
+            String option = sc.nextLine();
+
+            switch (option) {
+
+                case "1":
+                    System.out.print("Enter ID: ");
+                    int id = Integer.parseInt(sc.nextLine());
+
+                    System.out.print("Enter name: ");
+                    String name = sc.nextLine();
+
+                    System.out.print("Enter volume (0-100): ");
+                    int volume = Integer.parseInt(sc.nextLine());
+
+                    System.out.print("Enter bass (0-100): ");
+                    int bass = Integer.parseInt(sc.nextLine());
+
+                    SoundMixer mixer = new SoundMixer(id, name, volume, bass);
+                    mixers.add(mixer);
+
+                    try {
+                        JsonWriter.saveSoundMixers(FILE, mixers);
+                        System.out.println("✔ SoundMixer saved.");
+                    } catch (Exception e) {
+                        System.out.println("Error saving JSON.");
+                    }
+                    break;
+
+                case "2":
+                    System.out.println("\n=== STORED SOUND MIXERS ===");
+                    mixers = loadOrCreate();
+                    mixers.forEach(System.out::println);
+                    break;
+
+                case "3":
+                    System.out.println("Exiting...");
+                    return;
+
+                default:
+                    System.out.println("Invalid option.");
+            }
+        }
+    }
+
+    private static List<SoundMixer> loadOrCreate() {
+        try {
+            File f = new File(FILE);
+            if (!f.exists()) {
+                JsonWriter.saveSoundMixers(FILE, new ArrayList<>());
+            }
+            return JsonReader.loadSoundMixers(FILE);
+        } catch (Exception e) {
+            return new ArrayList<>();
+        }
+    }
+}
