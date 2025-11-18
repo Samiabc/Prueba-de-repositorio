@@ -1,0 +1,23 @@
+import java.util.HashMap;
+
+public class Main {
+    public static void main(String[] args) {
+        try {
+            // Guardar datos
+            HashMap<String, Object> data = new HashMap<>();
+            data.put("nombre", "Sami");
+            data.put("edad", 20);
+
+            JsonWriter.saveToJson("datos.json", data);
+
+            // Leer datos
+            HashMap contenido = JsonReader.readFromJson("datos.json", HashMap.class);
+
+            System.out.println("Contenido del JSON:");
+            System.out.println(contenido);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
