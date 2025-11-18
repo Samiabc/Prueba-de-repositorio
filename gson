@@ -1,0 +1,14 @@
+Ve a Google y escribe:
+gson jar download
+
+Entra al resultado que dice algo como “Gson – Google” o GitHub Gson Releases.
+
+Descarga el archivo que se llama:
+gson-2.10.1.jar (o la versión más nueva).
+
+🔸 Normalmente lo descargas desde la página de Google:
+https://github.com/google/gson/releases
+
+(ahí buscas el .jar)
+
+Guarda el .jar en una carpeta donde guardes tus librerías (por ejemplo, C:\libs\gson\).
