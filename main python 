@@ -1,22 +1,43 @@
 from JsonWriter import JsonWriter
 from JsonReader import JsonReader
+import json
+import os
 
-def main():
-    # Datos de ejemplo
-    datos = {
-        "nombre": "Sami",
-        "edad": 20,
-        "hobbies": ["baile", "canto", "escribir"]
-    }
+FILE = "datos.json"
 
-    # Guardar archivo JSON
-    JsonWriter.save("datos.json", datos)
-    print("Archivo JSON guardado correctamente.")
+def cargar_o_iniciar():
+    if not os.path.exists(FILE):
+        JsonWriter.save(FILE, [])
+    return JsonReader.read(FILE)
 
-    # Leer archivo JSON
-    contenido = JsonReader.read("datos.json")
-    print("Contenido del JSON:")
-    print(contenido)
+def guardar(datos):
+    JsonWriter.save(FILE, datos)
 
-if __name__ == "__main__":
-    main()
+def menu():
+    while True:
+        print("\n=== MENÚ JSON ===")
+        print("1. Agregar dato")
+        print("2. Leer JSON")
+        print("3. Salir")
+        opcion = input("Opción: ")
+
+        if opcion == "1":
+            datos = cargar_o_iniciar()
+            nuevo = input("Escribe algo para guardar: ")
+            datos.append(nuevo)
+            guardar(datos)
+            print("✔ Dato agregado.")
+
+        elif opcion == "2":
+            datos = cargar_o_iniciar()
+            print("\nContenido del JSON:")
+            print(json.dumps(datos, indent=4, ensure_ascii=False))
+
+        elif opcion == "3":
+            print("Saliendo...")
+            break
+
+        else:
+            print("Opción inválida, intenta de nuevo.")
+
+menu()
