@@ -1,0 +1,21 @@
+const fs = require("fs");
+
+class JsonWriter {
+    static save(filePath, data) {
+        fs.writeFileSync(filePath, JSON.stringify(data, null, 4));
+    }
+}
+
+module.exports = JsonWriter;
+
+
+const fs = require("fs");
+
+class JsonReader {
+    static read(filePath) {
+        const raw = fs.readFileSync(filePath);
+        return JSON.parse(raw);
+    }
+}
+
+module.exports = JsonReader;
