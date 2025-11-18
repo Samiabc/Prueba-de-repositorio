@@ -1,0 +1,43 @@
+public class SoundMixer {
+
+    private int id;
+    private String name;
+    private int volume;
+    private int bass;
+
+    public SoundMixer() {
+    }
+
+    public SoundMixer(int id, String name, int volume, int bass) {
+        this.id = id;
+        this.name = name;
+        this.volume = volume;
+        this.bass = bass;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getVolume() {
+        return volume;
+    }
+
+    public int getBass() {
+        return bass;
+    }
+
+    @Override
+    public String toString() {
+        return "SoundMixer {" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", volume=" + volume +
+                ", bass=" + bass +
+                '}';
+    }
+}
